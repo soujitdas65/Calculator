@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+    }
+
+    .calculator {
+      width: 300px;
+      margin: 50px auto;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .calculator input[type="text"] {
+      width: 100%;
+      padding: 20px;
+      font-size: 24px;
+      border: none;
+      text-align: right;
+      box-sizing: border-box;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      background-color: #f5f5f5;
+    }
+
+    .calculator table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .calculator table td {
+      padding: 10px;
+      text-align: center;
+    }
+
+    .calculator table td button {
+      width: 100%;
+      padding: 15px 0;
+      font-size: 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: #e0e0e0;
+      cursor: pointer;
+    }
+
+    .calculator table td button:hover {
+      background-color: #d3d3d3;
+    }
+
+    .calculator table td button:active {
+      background-color: #bcbcbc;
+    }
+
+    .calculator table .operator {
+      background-color: #ff9800;
+      color: #fff;
+    }
+
+    .calculator table .operator:hover {
+      background-color: #e08a00;
+    }
+
+    .calculator table .operator:active {
+      background-color: #c67e00;
+    }
+
+    .calculator table .equal {
+      background-color: #4caf50;
+      color: #fff;
+    }
+
+    .calculator table .equal:hover {
+      background-color: #3d8f3d;
+    }
+
+    .calculator table .equal:active {
+      background-color: #368336;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <input type="text" id="result" readonly>
+    <table>
+      <tr>
+        <td><button onclick="appendInput('7')">7</button></td>
+        <td><button onclick="appendInput('8')">8</button></td>
+        <td><button onclick="appendInput('9')">9</button></td>
+        <td><button onclick="appendInput('+')" class="operator">+</button></td>
+      </tr>
+      <tr>
+        <td><button onclick="appendInput('4')">4</button></td>
+        <td><button onclick="appendInput('5')">5</button></td>
+        <td><button onclick="appendInput('6')">6</button></td>
+        <td><button onclick="appendInput('-')" class="operator">-</button></td>
+      </tr>
+      <tr>
+        <td><button onclick="appendInput('1')">1</button></td>
+        <td><button onclick="appendInput('2')">2</button></td>
+        <td><button onclick="appendInput('3')">3</button></td>
+        <td><button onclick="appendInput('*')" class="operator">*</button></td>
+      </tr>
+      <tr>
+        <td><button onclick="appendInput('0')">0</button></td>
+        <td><button onclick="appendInput('.')">.</button></td>
+        <td><button onclick="calculate()" class="equal">=</button></td>
+        <td><button onclick="appendInput('/')" class="operator">/</button></td>
+      </tr>
+    </table>
+    <button onclick="clearResult()">Clear</button>
+  </div>
+
+  <script>
+    const result = document.getElementById('result');
+
+    function appendInput(value) {
+      result.value += value;
+    }
+
+    function calculate() {
+      try {
+        const input = result.value;
+        const output = eval(input);
+        result.value = output;
+      } catch (error) {
+        result.value = 'Error';
+      }
+    }
+
+    function clearResult() {
+      result.value = '';
+    }
+  </script>
+</body>
+</html>
